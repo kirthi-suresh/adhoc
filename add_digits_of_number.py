@@ -9,8 +9,6 @@ print(program)
 print("+" * len(program))
 number = input("Enter the number:\n")
 digits = [int(i) for i in number]
-sum_of_digits = 0
-for i in digits:
-    sum_of_digits += i
+sum_of_digits = sum(digits)
 
 print(f"Sum of digits is {sum_of_digits}")
