@@ -13,4 +13,4 @@ weight = float(input("What is the weight in kg?\n"))
 
 bmi = weight / (height**2)
 
-print(f"BMI is {round(bmi,1)}")
+print(f"BMI is {bmi:.1f}")
