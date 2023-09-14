@@ -83,7 +83,7 @@ def print_header(stage):
     header = f"Hangman"
     os.system("clear")
     common_utils.print_header(header)
-    print(f"Test: {word}")  # Comment line for game
+    # print(f"Test: {word}")  # Uncomment to debug
     print(f"Lives left: {lives}")
     print_stages(stage)
     print(display_word)
