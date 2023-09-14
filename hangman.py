@@ -5,12 +5,20 @@ The game
 Version 1.0.0
 """
 
-
-from common_utils import print_header
+import common_utils
 import requests
 import os
+import sys
 
-header = f"Hangman"
+
+def print_header():
+    header = f"Hangman"
+    os.system("clear")
+    common_utils.print_header(header)
+    print(f"Test: {word}")  # Comment line for game
+    print(f"Lives left: {lives}")
+    print(display_word)
+
 
 # Get random word
 data = requests.get("https://random-word-api.herokuapp.com/word")
@@ -24,21 +32,22 @@ word_list = list(display_word)
 lives = 6
 
 while lives:
-    os.system("clear")
-    print_header(header)
-    print(word)
-    print(lives)
-    print(display_word)
+    print_header()
 
-    letter = input("\nGuess: ")
+    letter = input("\nGuess one letter: ")
+    if len(letter) > 1 and letter.isalpha():
+        print("Program terminated due to invalid input.")
+        sys.exit()
+
     if letter in word:
-        for loc, l in enumerate(word):
-            if l == letter:
-                loc = loc * 2
-                word_list[loc] = letter
+        for location, chrctr in enumerate(word):
+            if chrctr == letter:
+                location = location * 2
+                word_list[location] = letter
                 display_word = "".join(word_list)
                 length -= 1
         if length == 0:
+            print_header()
             print("\nYou won!")
             break
     else:
