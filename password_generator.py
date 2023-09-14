@@ -8,7 +8,7 @@ Version 1.0.0
 import random
 from common_utils import print_header
 
-header = f"Password generator"
+header = f"Password Generator"
 print_header(header)
 
 letters = [
@@ -68,7 +68,7 @@ letters = [
 numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 symbols = ["!", "#", "$", "%", "&", "(", ")", "*", "+"]
 
-print("Welcome to the PyPassword Generator!")
+
 total_letters = int(input("How many letters would you like in your password?\n"))
 total_symbols = int(input(f"How many symbols would you like?\n"))
 total_numbers = int(input(f"How many numbers would you like?\n"))
