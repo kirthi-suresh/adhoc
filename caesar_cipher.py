@@ -39,22 +39,24 @@ alphabet = [
 def encoder_decoder(option=1):
     try:
         msg = input("Message: ")
-        shift = int(input("Shift: "))
         msg = msg.lower()
+        shift = int(input("Shift: "))
         encrypted_word = []
         for letter in msg:
-            location = alphabet.index(letter)
-            if option == 1:
-                pointer = location + shift
-                while pointer > 26:
-                    pointer = abs(26 - pointer)
-            else:
-                pointer = location - shift
-                while pointer < -26:
-                    pointer = abs(26 - pointer)
+            if letter in alphabet:
+                location = alphabet.index(letter)
+                if option == 1:
+                    pointer = location + shift
+                    while pointer > 26:
+                        pointer = abs(26 - pointer)
+                else:
+                    pointer = location - shift
+                    while pointer < -26:
+                        pointer = abs(26 - pointer)
 
-            new_letter = alphabet[pointer]
-            encrypted_word.append(new_letter)
+                letter = alphabet[pointer]
+            encrypted_word.append(letter)
+
         return "".join(encrypted_word)
 
     except Exception as e:
