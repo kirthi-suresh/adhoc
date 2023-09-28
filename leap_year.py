@@ -6,18 +6,29 @@ Version 1.0.0
 from common_utils import print_header
 
 
-program = f"Leap Year"
-print_header(program)
-
-year = int(input("What is the year?\n"))
-
-if year % 4 == 0:
-    if year % 100 == 0:
-        if year % 400 == 0:
-            print("This is a leap year")
+def leap_year(year):
+    if year % 4 == 0:
+        if year % 100 == 0:
+            if year % 400 == 0:
+                return True
+            else:
+                return False
         else:
-            print("This is not a leap year")
+            return True
     else:
-        print("This is a leap year")
-else:
-    print("This is not a leap year")
+        return False
+
+
+def main():
+    program = f"Leap Year"
+    print_header(program)
+
+    try:
+        year = int(input("What is the year?\n"))
+        print(f"Is {year} a leap year? {leap_year(year)}")
+    except Exception as e:
+        print("Invalid input!")
+
+
+if __name__ == "__main__":
+    main()
