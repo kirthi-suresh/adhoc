@@ -53,6 +53,7 @@ def count_of_decks():
         except Exception as e:
             print("Invalid input!")
             time.sleep(2)
+            print_header()
     return count_of_decks
 
 
@@ -69,6 +70,7 @@ def main():
     dealer_cards = []
     dealer_count = 0
     dealer_A_flag = False
+    dealer_second_card = False
     player_cards = []
     player_count = 0
     player_A_flag = False
@@ -89,14 +91,16 @@ def main():
     # Players turn
     checkpoint = True
     while checkpoint:
-        if player_count > 21:
-            checkpoint = False
-        elif input("Deal? (y/n)").lower() == "n":
+        if player_count >= 21 or (input("Deal? (y/n)").lower() == "n"):
             checkpoint = False
         else:
             card, value = pick_a_card()
+            if value == 11:
+                player_A_flag = True
             player_cards.append(card)
             player_count += value
+            if player_A_flag and player_count > 21:
+                player_count -= 10
             print_header()
             print(f"Dealer: {dealer_cards} Count: {dealer_count}")
             print(f"Player: {player_cards} Count: {player_count}")
@@ -104,12 +108,17 @@ def main():
     # Dealers turn
     checkpoint = True
     while checkpoint:
-        if dealer_count > 16:
+        if dealer_count > 16 or (dealer_second_card and player_count > 21):
             checkpoint = False
         else:
+            dealer_second_card = True
             card, value = pick_a_card()
+            if value == 11:
+                dealer_A_flag = True
             dealer_cards.append(card)
             dealer_count += value
+            if dealer_A_flag and dealer_count > 21:
+                dealer_count -= 10
             print_header()
             print(f"Dealer: {dealer_cards} Count: {dealer_count}")
             print(f"Player: {player_cards} Count: {player_count}")
