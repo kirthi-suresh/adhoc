@@ -60,7 +60,7 @@ def count_of_decks():
 def pick_a_card():
     card, value = random.choice(list(cards.items()))
     cards.pop(card)
-    return card, value
+    return card[3:], value
 
 
 def main():
@@ -101,6 +101,7 @@ def main():
             player_count += value
             if player_A_flag and player_count > 21:
                 player_count -= 10
+                player_A_flag = False
             print_header()
             print(f"Dealer: {dealer_cards} Count: {dealer_count}")
             print(f"Player: {player_cards} Count: {player_count}")
@@ -119,6 +120,7 @@ def main():
             dealer_count += value
             if dealer_A_flag and dealer_count > 21:
                 dealer_count -= 10
+                dealer_A_flag = False
             print_header()
             print(f"Dealer: {dealer_cards} Count: {dealer_count}")
             print(f"Player: {player_cards} Count: {player_count}")
