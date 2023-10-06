@@ -125,7 +125,9 @@ def main():
             print(f"Dealer: {dealer_cards} Count: {dealer_count}")
             print(f"Player: {player_cards} Count: {player_count}")
 
-    if player_count > 21:
+    if player_count == 21:
+        print("Blackjack!")
+    elif player_count > 21:
         print("Game lost!")
     elif dealer_count > 21:
         print("Game won!")
