@@ -35,6 +35,10 @@ def divide(n1: float, n2: float):
         return None
 
 
+def calculator(n1: float, n2: float, func):
+    return func(n1, n2)
+
+
 operations = {"+": add, "-": subtract, "*": multiply, "/": divide}
 
 
@@ -53,7 +57,17 @@ def main():
         n1 = int(input("What' the first numbers? "))
         n2 = int(input("What' the second numbers? "))
 
-        result = operations[select_operation](n1, n2)
+        # result = operations[select_operation](n1, n2)
+        match select_operation:
+            case "+":
+                result = calculator(n1, n2, add)
+            case "-":
+                result = calculator(n1, n2, subtract)
+            case "*":
+                result = calculator(n1, n2, multiply)
+            case "/":
+                result = calculator(n1, n2, divide)
+
         if result is None:
             print("Cannot divide by 0.")
 
